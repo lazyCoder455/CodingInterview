@@ -1,17 +1,14 @@
+package Chapter1;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * Created by Faiz-Note on 3/5/14.
+ * Created by lazyCoder455 on 3/5/14.
  */
 public class Chapter1 {
-
-    public static void main(String[] args) {
-        //System.out.println(reverse("Hello, World"));
-        System.out.println(addSpace(new char[] {'M','r',' ','J','o','h','n',' ','S','m','i','t','h',' ',' ',' ',' '}, 13));
-    }
 
     public static boolean isUnique(String str) {
         //add it, mostafa
