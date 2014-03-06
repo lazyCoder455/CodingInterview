@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 /**
  * Created by Faiz-Note on 3/5/14.
  */
@@ -103,6 +108,41 @@ public class Chapter1 {
                 for(int j = 0; j < matrix.length; j++) {
                     matrix[j][i] = 0;
                 }
+            }
+        }
+    }
+
+    public static void rotate90(BufferedImage img) throws IOException {
+        //BufferedImage originalImage = ImageIO.read(new File("c:\\image\\mypic.jpg"));
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+        baos.close();
+        //rows must = columns
+        int rows = img.getHeight();
+        int columns = img.getWidth();
+        int n = rows - 1;
+        //indexing will be as:
+        // imageInByte[i + j * columns] = img[i][j];
+        /*
+            what are the rotations?
+            img[0][0] -> img[n][0]
+            img[n][0] -> img[n][n]
+            img[n][n] -> img[0][n]
+            img[0][n] -> img[0][0]
+            in general
+            img[i][j] -> img[n - j][i]
+         */
+        //iterate through the matrix
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++) {
+                //do the switching
+                //extract for easier use
+                int a = imageInByte[i + j * columns];
+                int b = imageInByte[(n - j) + i * columns];
+                int c = imageInByte[n - i + (n - j) * columns];
+                int d = imageInByte[(n - n + j) + (n - i) * columns];
             }
         }
     }
