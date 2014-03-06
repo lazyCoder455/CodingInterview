@@ -25,4 +25,13 @@ public class Node {
         }
         return head;
     }
+
+    public static String toString(Node head) {
+        String answer = "";
+        while(head.next != null) {
+            answer += head.data + " ";
+            head = head.next;
+        }
+        return answer;
+    }
 }

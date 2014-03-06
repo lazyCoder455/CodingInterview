@@ -119,6 +119,7 @@ public class Chapter1 {
         //rows must = columns
         int rows = img.getHeight();
         int columns = img.getWidth();
+        int channels = imageInByte.length / (rows * columns);
         int n = rows - 1;
         //indexing will be as:
         // imageInByte[i + j * columns] = img[i][j];
@@ -136,10 +137,32 @@ public class Chapter1 {
             for(int j = 0; j < columns; j++) {
                 //do the switching
                 //extract for easier use
-                int a = imageInByte[i + j * columns];
-                int b = imageInByte[(n - j) + i * columns];
-                int c = imageInByte[n - i + (n - j) * columns];
-                int d = imageInByte[(n - n + j) + (n - i) * columns];
+                //do for each channel
+                for(int k = 0; k < channels; k++){
+                    byte a = imageInByte[i + j * columns];
+                    byte b = imageInByte[(n - j) + i * columns];
+                    byte c = imageInByte[n - i + (n - j) * columns];
+                    byte d = imageInByte[(n - n + j) + (n - i) * columns];
+
+                    //move b into a and b into a
+                    a ^= b;
+                    b ^= a;
+                    a ^= b;
+
+                    // move a into c and c into a
+                    c ^= a;
+                    a ^= c;
+                    c ^= a;
+
+                    // move a into d and d into a
+                    d ^= a;
+                    a ^= d;
+                    d ^= a;
+                    imageInByte[i + j * columns] = a;
+                    imageInByte[(n - j) + i * columns] = b;
+                    imageInByte[n - i + (n - j) * columns] = c;
+                    imageInByte[(n - n + j) + (n - i) * columns] = d;
+                }
             }
         }
     }
