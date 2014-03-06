@@ -9,7 +9,7 @@ public class Chapter1 {
     }
 
     public static boolean isUnique(String str) {
-
+        //add it, mostafa
         return false;
     }
 
@@ -66,5 +66,44 @@ public class Chapter1 {
             answer += pattern[i];
         }
         return answer;
+    }
+
+    public static boolean isRotation(String str1, String str2) {
+        if(str1.length() == str2.length()) return false;
+        String str3 = str1 + str2;
+        //return isSubstring(str3, str2);
+        return false;
+
+    }
+
+    public static void setToZero(int[][] matrix) {
+        boolean[] rows = new boolean[matrix.length];
+        boolean[] columns = new boolean[matrix[0].length];
+
+        //iterate through the matrix by rows then columns
+        for(int j = 0; j < columns.length; j++) {
+            for(int i = 0; i < rows.length; i++) {
+                if(matrix[i][j] == 0) {
+                    rows[i] = true;
+                    columns[i] = true;
+                }
+            }
+        }
+        //set the rows to zero
+        for(int i = 0; i < rows.length; i++) {
+            if(rows[i]) {
+                for(int j = 0; j < matrix[0].length; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        for(int i = 0; i < columns.length; i++) {
+            if(columns[i]) {
+                for(int j = 0; j < matrix.length; j++) {
+                    matrix[j][i] = 0;
+                }
+            }
+        }
     }
 }
