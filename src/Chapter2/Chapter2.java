@@ -18,10 +18,57 @@ public class Chapter2 {
         }
     }
 
-    public static void partitionAroundValue(Node head, int value) {
-        Node less;
-        Node equal;
-        Node more;
+    public static Node partitionAroundValue(Node head, int value) {
+        Node less = null;
+        Node lessStart = null;
+        Node equal = null;
+        Node equalStart = null;
+        Node more = null;
+        Node moreStart = null;
+        Node iter = head;
+        while(iter.next!= null) {
+            if(iter.data > value) {
+                if(more == null) {
+                    more = iter;
+                    moreStart = more;
+                } else {
+                    more.next = iter;
+                    more = more.next;
+                }
+            } else if(iter.data < value) {
+                if(less == null) {
+                    less = iter;
+                    lessStart = less;
+                } else {
+                    less.next = iter;
+                    less = less.next;
+                }
+            } else if(iter.data == value) {
+                if(equal == null) {
+                    equal = iter;
+                    equalStart = equal;
+                } else {
+                    equal.next = iter;
+                    equal = less.next;
+                }
+            }
+            iter = iter.next;
+        }
 
+        //stitch together
+        if(lessStart != null) head = lessStart;
+        else if(equalStart != null) {
+            head = equalStart;
+            if(moreStart != null) equal.next = moreStart;
+            return head;
+        }
+        else if(moreStart != null) {
+            head = moreStart;
+            return head;
+        }
+
+        if(equalStart != null) less.next = equalStart;
+        if(moreStart != null) equal.next = moreStart;
+        return head;
     }
 }
