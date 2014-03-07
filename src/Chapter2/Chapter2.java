@@ -71,4 +71,48 @@ public class Chapter2 {
         if(moreStart != null) equal.next = moreStart;
         return head;
     }
+
+    public static Node findCorrupt(Node head) {
+        Node rate1 = head;
+        Node rate2 = head;
+        int distance1 = 0;
+        int distance2 = 0;
+        while (rate1.next != null && rate2.next != null) {
+            rate1 = rate1.next;
+            rate2 = rate2.next.next;
+            distance1++;
+            distance2 += 2;
+            if (rate1 == rate2) break;
+            //if the above is true that means that we have a loop
+        }
+        // both pointer are now the same distance from the beginning but at
+        // different speeds
+        while (distance2 != 0) {
+            distance1--;
+            distance2 -= 1;
+        }
+        //distance1 is the node that cause the problem
+        for (int i = 0; i < distance1; i++) {
+            head = head.next;
+        }
+
+        return head;
+    }
+
+    public static Node fromLast(Node head, int k) {
+        Node iter = head;
+        int distance = 0;
+        while (iter.next != null) {
+            iter = iter.next;
+            distance++;
+        }
+
+        int ret = distance - k;
+        iter = head;
+        for (int i = 0; i < ret; i++) {
+            iter = iter.next;
+        }
+
+        return iter;
+    }
 }

@@ -2,8 +2,11 @@ package Chapter1;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.File;
 
 /**
  * Created by lazyCoder455 on 3/5/14.
@@ -109,18 +112,12 @@ public class Chapter1 {
         }
     }
 
-    public static void rotate90(BufferedImage img) throws IOException {
+    public static int[][] rotate90(int[][] input) throws IOException {
         //BufferedImage originalImage = ImageIO.read(new File("c:\\image\\mypic.jpg"));
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(img, "jpg", baos);
-        baos.flush();
-        byte[] imageInByte = baos.toByteArray();
-        baos.close();
-        //rows must = columns
-        int rows = img.getHeight();
-        int columns = img.getWidth();
-        int channels = imageInByte.length / (rows * columns);
-        int n = rows - 1;
+        int[][] image = new int[][]{{1, 0}, {0, 1}};
+        int rows = image.length;
+        int columns = image[0].length;
+        int n = rows;
         //indexing will be as:
         // imageInByte[i + j * columns] = img[i][j];
         /*
@@ -133,37 +130,38 @@ public class Chapter1 {
             img[i][j] -> img[n - j][i]
          */
         //iterate through the matrix
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < columns; j++) {
+        for (int i = 0; i < rows / 2; i++) {
+            for (int j = i; j < columns; j++) {
                 //do the switching
                 //extract for easier use
                 //do for each channel
-                for(int k = 0; k < channels; k++){
-                    byte a = imageInByte[i + j * columns];
-                    byte b = imageInByte[(n - j) + i * columns];
-                    byte c = imageInByte[n - i + (n - j) * columns];
-                    byte d = imageInByte[(n - n + j) + (n - i) * columns];
+                int a = image[i][j];
+                int b = image[n - j][i];
+                int c = image[n - i][n - j];
+                int d = image[n - n + j][n - i];
 
-                    //move b into a and b into a
-                    a ^= b;
-                    b ^= a;
-                    a ^= b;
+                //move b into a and b into a
+                a ^= b;
+                b ^= a;
+                a ^= b;
 
-                    // move a into c and c into a
-                    c ^= a;
-                    a ^= c;
-                    c ^= a;
+                // move a into c and c into a
+                c ^= a;
+                a ^= c;
+                c ^= a;
 
-                    // move a into d and d into a
-                    d ^= a;
-                    a ^= d;
-                    d ^= a;
-                    imageInByte[i + j * columns] = a;
-                    imageInByte[(n - j) + i * columns] = b;
-                    imageInByte[n - i + (n - j) * columns] = c;
-                    imageInByte[(n - n + j) + (n - i) * columns] = d;
-                }
+                // move a into d and d into a
+                d ^= a;
+                a ^= d;
+                d ^= a;
+                image[i][j] = a;
+                image[n - j][i] = b;
+                image[n - i][n - j] = c;
+                image[n - n + j][n - i] = d;
             }
         }
+
+        return image;
+
     }
 }
