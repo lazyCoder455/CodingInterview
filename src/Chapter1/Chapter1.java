@@ -14,8 +14,18 @@ import java.io.File;
 public class Chapter1 {
 
     public static boolean isUnique(String str) {
-        //add it, mostafa
-        return false;
+        int checker = 0;
+        for(int i=0; i < str.length(); i++){
+            int letterA = 'a';
+            int val = str.charAt(i)-letterA;
+            int temp = (1 << val);
+            if((checker & temp) > 0){
+                return false;
+            }
+            checker |= (1 << val);
+            //checker = checker | (1 << val);
+        }
+        return true;
     }
 
     public static String reverse(String str) {
@@ -74,10 +84,10 @@ public class Chapter1 {
     }
 
     public static boolean isRotation(String str1, String str2) {
-        if(str1.length() == str2.length()) return false;
-        String str3 = str1 + str2;
+        if(str1.length() != str2.length()) return false;
+        String str3 = str1 + str1;
+        return str3.contains(str2.subSequence(0, str2.length()));
         //return isSubstring(str3, str2);
-        return false;
 
     }
 
@@ -112,12 +122,13 @@ public class Chapter1 {
         }
     }
 
-    public static int[][] rotate90(int[][] input) throws IOException {
+    // 1.6
+    public static int[][] rotate90() throws IOException {
         //BufferedImage originalImage = ImageIO.read(new File("c:\\image\\mypic.jpg"));
-        int[][] image = new int[][]{{1, 0}, {0, 1}};
+        int[][] image = new int[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
         int rows = image.length;
         int columns = image[0].length;
-        int n = rows;
+        int n = rows -1;
         //indexing will be as:
         // imageInByte[i + j * columns] = img[i][j];
         /*
@@ -131,7 +142,7 @@ public class Chapter1 {
          */
         //iterate through the matrix
         for (int i = 0; i < rows / 2; i++) {
-            for (int j = i; j < columns; j++) {
+            for (int j = i; j < columns / 2; j++) {
                 //do the switching
                 //extract for easier use
                 //do for each channel
@@ -140,7 +151,7 @@ public class Chapter1 {
                 int c = image[n - i][n - j];
                 int d = image[n - n + j][n - i];
 
-                //move b into a and b into a
+                //move b into a and a into b
                 a ^= b;
                 b ^= a;
                 a ^= b;

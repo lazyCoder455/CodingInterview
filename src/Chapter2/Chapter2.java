@@ -7,17 +7,34 @@ import sun.net.www.content.audio.aiff;
  */
 public class Chapter2 {
 
+    // 2.3
     public static void removeFromMiddle(Node n) {
         Node iter = n;
+        if(iter.next == null) {
+            iter = null;
+        }
         while(iter.next != null) {
             iter.data = iter.next.data;
             if(iter.next.next == null) {
-                iter.next = null;
+                //iter.next = null;
+                iter = iter.next;
+                iter = null;
                 break;
             } else{
-            iter = iter.next;
+                iter = iter.next;
             }
         }
+    }
+
+    // 2.3 book ans
+    public static void removeFromMiddleBook(Node n) {
+       // n.next = n.next.next;
+        if(n == null || n.next == null) {
+            return;
+        }
+        Node next = n.next;
+        n.data = next.data;
+        n.next = next.next;
     }
 
     public static Node partitionAroundValue(Node head, int value) {
@@ -28,7 +45,7 @@ public class Chapter2 {
         Node more = null;
         Node moreStart = null;
         Node iter = head;
-        while(iter.next!= null) {
+        while(iter != null) {
             if(iter.data > value) {
                 if(more == null) {
                     more = iter;
@@ -56,22 +73,40 @@ public class Chapter2 {
             }
             iter = iter.next;
         }
-
-        //stitch together
-        if(lessStart != null) head = lessStart;
-        else if(equalStart != null) {
+        if(more != null)more.next = null;
+        if(less != null)less.next = null;
+        if(equal != null)equal.next = null;
+        Node end = new Node(5);
+        if(lessStart != null){
+            head = lessStart;
+            end = less;
+            if(equalStart != null) {
+                end.next = equalStart;
+                end = equal;
+            }
+            if(moreStart != null) {
+                end.next = moreStart;
+                end = more;
+                end.next = null;
+                return  head;
+            }
+        } else if(equalStart != null) {
             head = equalStart;
-            if(moreStart != null) equal.next = moreStart;
-            return head;
-        }
-        else if(moreStart != null) {
+            end = equal;
+            if(moreStart != null) {
+                equal.next = moreStart;
+                end = more;
+                end.next = null;
+            }
+            return  head;
+        } else if(moreStart != null) {
             head = moreStart;
+            end = more;
+            end.next = null;
             return head;
         }
+        return null;
 
-        if(equalStart != null) less.next = equalStart;
-        if(moreStart != null) equal.next = moreStart;
-        return head;
     }
 
     public static Node findCorrupt(Node head) {

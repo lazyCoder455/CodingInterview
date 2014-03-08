@@ -28,7 +28,7 @@ public class Node {
 
     public static String toString(Node head) {
         String answer = "";
-        while(head.next != null) {
+        while(head != null) {
             answer += head.data + " ";
             head = head.next;
         }
