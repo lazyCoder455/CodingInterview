@@ -1,5 +1,7 @@
 package Chapter2;
 
+import sun.net.www.content.audio.aiff;
+
 /**
  * Created by lazyCoder455 on 3/6/14.
  */
@@ -114,5 +116,36 @@ public class Chapter2 {
         }
 
         return iter;
+    }
+
+    public static Node addReverse(Node a, Node b) {
+        Node heada = a;
+        Node headb = b;
+        Node answer = new Node(0);
+        Node iter = answer;
+        //must assume list of same lenght or the answer will be wrong
+        int sum = 0;
+        int carry = 0;
+        while (heada.next != null && headb.next != null) {
+            sum = (heada.data + headb.data) + carry;
+            if (sum >= 10) {
+                carry = 1;
+                sum %= 10;
+            } else {
+                carry = 0;
+            }
+            iter.next = new Node(sum);
+            iter = iter.next;
+            heada = heada.next;
+            headb = headb.next;
+
+        }
+
+
+        return answer;
+    }
+
+    public static Node addForward(Node a, Node b) {
+
     }
 }
