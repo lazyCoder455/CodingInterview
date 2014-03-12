@@ -182,5 +182,7 @@ public class Chapter2 {
 
     public static Node addForward(Node a, Node b) {
 
+        return null;
+
     }
 }

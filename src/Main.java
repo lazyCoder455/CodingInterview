@@ -1,6 +1,7 @@
 import Chapter1.Chapter1;
 import Chapter2.Chapter2;
 import Chapter2.Node;
+import Chapter3.ThreeStack;
 import com.sun.org.apache.xml.internal.security.utils.CachedXPathFuncHereAPI;
 
 import javax.imageio.ImageIO;
@@ -21,12 +22,19 @@ public class Main {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        Node a = Node.createList(10, 4, 0, 16, 26, 9, 3);
-        a = Chapter2.partitionAroundValue(a, 15);
+//        Node a = Node.createList(10, 4, 0, 16, 26, 9, 3);
+//        a = Chapter2.partitionAroundValue(a, 15);
 //        Node habib = Chapter2.fromLast(a, 2);
 //        Chapter2.removeFromMiddleBook(habib);
-        Node b = Node.createList(111);
-        Node c = Node.createList(111);
-        System.out.println(Node.toString(a));
+//        Node b = Node.createList(111);
+//        Node c = Node.createList(111);
+//        System.out.println(Node.toString(a));
+        ThreeStack a = new ThreeStack();
+        a.push(0, 1);
+        a.push(0, 2);
+        a.push(0, 3);
+        System.out.println(a.pop(0));
+        System.out.println(a.pop(0));
+        System.out.println(a.pop(0));
     }
 }
