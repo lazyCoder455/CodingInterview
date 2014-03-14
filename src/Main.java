@@ -33,8 +33,12 @@ public class Main {
         a.push(0, 1);
         a.push(0, 2);
         a.push(0, 3);
-        System.out.println(a.pop(0));
-        System.out.println(a.pop(0));
-        System.out.println(a.pop(0));
+        a.push(1, 7);
+        a.push(2, 9);
+        System.out.println(a.pop(0)); //3
+        System.out.println(a.pop(0)); //2
+        System.out.println(a.pop(1)); //7
+        System.out.println(a.pop(0)); //1
+        System.out.println(a.pop(2)); //9
     }
 }
