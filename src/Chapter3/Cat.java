@@ -5,7 +5,13 @@ package Chapter3;
  */
 public class Cat extends Animal {
 
+    public static final String message = "Meow. I'm a cat. May name is ";
+
     public Cat(String name) {
         super(name);
+    }
+
+    public String toString() {
+        return message + name + ".";
     }
 }

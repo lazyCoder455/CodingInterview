@@ -10,4 +10,8 @@ public class AnimalNode {
     public AnimalNode(Animal animal) {
         this.animal = animal;
     }
+
+    public AnimalNode() {
+
+    }
 }

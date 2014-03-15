@@ -6,41 +6,69 @@ import java.util.LinkedList;
  * Created by lazyCoder455 on 3/14/14.
  */
 public class AnimalQueue {
-    AnimalNode dogList;
-    AnimalNode catList;
-    AnimalNode totalList;
+    AnimalNode dogList = new AnimalNode();
+    AnimalNode catList = new AnimalNode();
+    AnimalNode totalList = new AnimalNode();
+
+    AnimalNode dogTail;
+    AnimalNode catTail;
+    AnimalNode tail;
 
     public AnimalQueue() {
+        dogTail = dogTail;
+        catTail = catList;
+        tail = totalList;
     }
 
     public void enqueue(Dog d) {
-        if (totalList == null) {
-            totalList = new AnimalNode(d);
-            dogList = totalList;
+        if (totalList.animal == null) {
+            totalList.next = new AnimalNode(d);
+            dogList.next = totalList;
+            dogTail = dogList.next;
+            tail = dogTail;
         } else {
-            dogList.next = new AnimalNode(d);
+            dogTail.next = new AnimalNode(d);
+            dogTail = dogTail.next;
         }
     }
 
     public void enqueue(Cat c) {
-        if (totalList == null) {
-            totalList = new AnimalNode(c);
-            catList = totalList;
+        if (totalList.animal == null) {
+            totalList.next = new AnimalNode(c);
+            catList.next = totalList;
+            catTail = catList.next;
+            tail = catTail;
         } else {
-            catList.next = new AnimalNode(c);
+            catTail.next = new AnimalNode(c);
+            catTail = catTail.next;
         }
-
     }
 
     public Animal dequeueAny() {
-        return null;
+        Animal a = totalList.next.animal;
+        if (totalList == dogList) {
+            dogList.next = dogList.next.next;
+        }
+        if (catList == totalList) {
+            catList.next = catList.next.next;
+        }
+        totalList.next = totalList.next.next;
+        return a;
     }
 
     public Dog dequeueDog() {
-        return null;
+        Dog d = (Dog) dogList.next.animal;
+        if (totalList == dogList) {
+            totalList.next = totalList.next.next;
+        }
+        return d;
     }
 
     public Cat dequeueCat() {
-        return null;
+        Cat c = (Cat) catList.next.animal;
+        if (totalList == catList) {
+            totalList.next = totalList.next.next;
+        }
+        return c;
     }
 }
