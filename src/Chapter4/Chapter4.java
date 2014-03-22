@@ -5,13 +5,6 @@ package Chapter4;
  */
 public class Chapter4 {
 
-
-    public static boolean isBalanced(Tree node, int height) {
-
-
-        return isBalanced(node.right, height + 1) && isBalanced(node.left, height + 1);
-    }
-
     public static boolean isRoute(GraphNode a, GraphNode b) {
         //assume DAG
         if (a.adjacencyList.size() == 0) return false;

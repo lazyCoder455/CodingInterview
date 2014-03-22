@@ -6,9 +6,9 @@ import Chapter2.Node;
  * Created by lazyCoder on 3/15/14.
  */
 public class Tree {
-    Tree right;
-    Tree left;
-    int data;
+    public Tree right;
+    public Tree left;
+    private int data;
 
     public Tree(int a) {
         this.data = a;
@@ -38,30 +38,30 @@ public class Tree {
     }
 
     public static void addToBSTRecurse(Tree a, int[] sorted, int start, int stop) {
-        int length = start - stop + 1;
+        int length = stop - start + 1;
         if (length < 1) {
             return;
         }
         if (a == null) {
-            a = new Tree(sorted[length / 2]);
+            a = new Tree(sorted[start + length / 2]);
         }
-        addToBSTRecurse(a.right, sorted, length / 2 - 1, stop);
-        addToBSTRecurse(a.left, sorted, start, length / 2 - 1);
+        addToBSTRecurse(a.right, sorted, stop - (length / 2 - 1), stop);
+        addToBSTRecurse(a.left, sorted, start, start + (length / 2 - 1));
     }
 
     public static boolean checkIsBST(Tree root) {
         if (root == null) return true;
         boolean isBST = false;
         isBST = root.data < root.right.data ? true : false;
-        isBST &= root.data > root.left.data ? true : false;
-        if (isBST) return false;
+        isBST &= root.data >= root.left.data ? true : false;
+        if (!isBST) return false;
         else return isBST && checkIsBST(root.right) && checkIsBST(root.left);
 
     }
 
     public static boolean isBalanced(Tree root) {
         if (root == null) return true;
-        return Math.abs(getHeight(root.right) - getHeight(root.left)) <= 1 && isBalanced(root.right) && isBalanced(root.left);
+        return (Math.abs(getHeight(root.right) - getHeight(root.left)) <= 1);
     }
 
     public static int getHeight(Tree root) {
@@ -71,7 +71,7 @@ public class Tree {
     }
 
     public static Node[] makeLists(Tree root, int d) {
-        Node[] lists = new Node[(int) Math.pow(2, d)];
+        Node[] lists = new Node[d];
         addToLinkedList(root, lists, 0);
         return lists;
     }

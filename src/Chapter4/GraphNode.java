@@ -11,6 +11,7 @@ public class GraphNode {
 
     public GraphNode(int data) {
         this.data = data;
+        adjacencyList = new ArrayList<GraphNode>();
     }
 
     public GraphNode(int data, ArrayList<GraphNode> adjacencyList) {

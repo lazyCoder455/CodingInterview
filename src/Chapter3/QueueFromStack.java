@@ -27,7 +27,7 @@ public class QueueFromStack {
         stackin.push(a);
     }
 
-    public Integer dequeue(int a) {
+    public Integer dequeue() {
         if (useIn) {
             while (!stackin.empty()) {
                 stackout.push(stackin.pop());
