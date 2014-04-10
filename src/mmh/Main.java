@@ -1,7 +1,9 @@
+package mmh;
+
 /**
- * Created by mostafa on 3/9/14.
+ * Created by habibmostafa on 3/9/14.
  */
-public class Mmain {
+public class Main {
     public static void main(String [] args){
 
         System.out.println();
