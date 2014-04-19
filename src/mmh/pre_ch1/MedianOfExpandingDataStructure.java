@@ -1,5 +1,6 @@
 package mmh.pre_ch1;
 
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
@@ -8,8 +9,8 @@ import java.util.PriorityQueue;
  */
 public class MedianOfExpandingDataStructure {
     // create data structure
-    PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>();
+    PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(2, Collections.reverseOrder());
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(2);
 
     public MedianOfExpandingDataStructure(){
 
@@ -20,25 +21,25 @@ public class MedianOfExpandingDataStructure {
      * @param newNumber
      */
     public void addNumber(int newNumber){
-        // if both empty put in minHeap.
-        // if <= minHeap.peek, put in minHeap
-        // if > minHeap.peek, put in maxHeap
+        // if both empty, put in maxHeap.
+        // if n <= maxHeap.peek, put in minHeap
+        // if n > maxHeap.peek, put in maxHeap
         // if maxHeap.size > minHeap.size, minHeap.add(maxHeap.poll)
-        // if minHeap.size - maxHeap.size > 1, maxHeap.add(minHeap.poll)
+        // if maxHeap.size - minHeap.size > 1, maxHeap.add(minHeap.poll)
+        // if minHeap.size - maxHeap.size > 1, minHeap.add(maxHeap.poll)
+
         if(minHeap.isEmpty() && maxHeap.isEmpty()){
+            maxHeap.add(newNumber);
+        }else if(newNumber <= maxHeap.peek()){
             minHeap.add(newNumber);
-        }else if(newNumber <= minHeap.peek()){
-            System.out.println(minHeap.peek());
-            minHeap.add(newNumber);
-        }else if(newNumber > minHeap.peek()){
-            System.out.println(minHeap.peek());
+        }else if(newNumber > maxHeap.peek()){
             maxHeap.add(newNumber);
         }
 
-        if(maxHeap.size() > minHeap.size()){
-            maxHeap.add(maxHeap.poll());
-        }else if(minHeap.size() - maxHeap.size() > 1){
+        if(minHeap.size() > maxHeap.size()){
             maxHeap.add(minHeap.poll());
+        }else if(maxHeap.size() - minHeap.size() > 1){
+            minHeap.add(maxHeap.poll());
         }
     }
 
@@ -47,38 +48,30 @@ public class MedianOfExpandingDataStructure {
      * If n is odd then Median (M) = value of ((n + 1)/2)th item term.
      * If n is even then Median (M) = value of [((n)/2)th item term + ((n)/2 + 1)th item term ]/2
      *
-     *
-     *
      */
-    public int getMedian(){
-        int [] minArr = new int[minHeap.size()];
-        int [] maxArr = new int[maxHeap.size()];
-
-        int i = 0;
-        while(!minHeap.isEmpty()){minArr[i++] = minHeap.poll();}
-        i=0;
-        while(!maxHeap.isEmpty()){maxArr[i++] = maxHeap.poll();}
-
-//        for(int k = 0; i < minArr.length; i++){
-//
-//        }
-        if(minArr.length > minArr.length){
-            return maxArr[maxArr.length-1];
-        }else if(minHeap.size() > maxHeap.size()){
-            return minArr[0];
+    public double getMedian(){
+        System.out.println(maxHeap.peek());
+        System.out.println(minHeap.peek());
+        if(maxHeap.size() == minHeap.size()){
+            return (maxHeap.poll().doubleValue() + minHeap.poll().doubleValue()) / 2.0;
+        }else if(maxHeap.size() > minHeap.size()){
+            return maxHeap.poll().doubleValue() / 2.0;
         }else{
-            return ( maxHeap.poll() + minHeap.poll() ) / 2;
+            return maxHeap.poll().doubleValue() / 2.0;
         }
     }
 
     public static void main(String [] args){
         MedianOfExpandingDataStructure mea = new MedianOfExpandingDataStructure();
+
         mea.addNumber(1);
         mea.addNumber(-20);
         mea.addNumber(-100);
         mea.addNumber(210);
         mea.addNumber(-310);
-        mea.addNumber(2);
+        mea.addNumber(-200);
+        mea.addNumber(200);
+        mea.addNumber(165);
 
         System.out.println(mea.getMedian());
     }
