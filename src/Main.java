@@ -6,6 +6,7 @@ import Chapter3.ThreeStack;
 import Chapter4.Chapter4;
 import Chapter4.GraphNode;
 import Chapter4.Tree;
+import Chapter7.Chapter7;
 import com.sun.org.apache.xml.internal.security.utils.CachedXPathFuncHereAPI;
 
 import javax.imageio.ImageIO;
@@ -64,15 +65,22 @@ public class Main {
 //        System.out.println("Hello: I am NOT a number!!");
 //
 //        System.out.println(Tree.isBalanced(t));
-        GraphNode g = new GraphNode(8);
-        GraphNode temp = null;
-        for(int i = 0; i < 10; i++) {
-            g.addChild(temp = new GraphNode(i));
-        }
-        GraphNode h = new GraphNode(66);
-        h.addChild(temp = new GraphNode(2309432));
-        g.addChild(h);
-        System.out.println(Chapter4.isRoute(h, temp));
+//        GraphNode g = new GraphNode(8);
+//        GraphNode temp = null;
+//        for(int i = 0; i < 10; i++) {
+//            g.addChild(temp = new GraphNode(i));
+//        }
+//        GraphNode h = new GraphNode(66);
+//        h.addChild(temp = new GraphNode(2309432));
+//        g.addChild(h);
+//        System.out.println(Chapter4.isRoute(h, temp));
+
+        //System.out.println(Chapter7.multiply(5, 4));
+        //System.out.println(Chapter7.subtract(4, -5));
+        //System.out.println(Chapter7.divide(-20, -5));
+        int n = 5;
+        System.out.println(Chapter7.kthPrime(n));
+        System.out.println(Chapter7.kthPrimeEfficeint(n));
 
 
     }
