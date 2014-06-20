@@ -1,5 +1,6 @@
 package Chapter7;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -127,5 +128,41 @@ public class Chapter7 {
 
 
         return result;
+    }
+
+    public static void lineAndPoints(Point ... a) {
+        ArrayList<Line> lines = new ArrayList<Line>();
+
+        //generate all possible lines
+        for(int i = 0; i < a.length; i++) {
+            Point start = a[i];
+            for(int j = i + 1; j < a.length; j++) {
+                Line e = new Line(start, a[j]);
+                if(!lines.contains(e)){
+                    e.addPoint(start);
+                    e.addPoint(a[j]);
+                    lines.add(e);
+                } else {
+                    Line t = lines.get(lines.indexOf(e));
+                    t.addPoint(start);
+                    t.addPoint(a[j]);
+                }
+            }
+        }
+
+        int maxIndex = 0;
+        int maxCount = 0;
+        for(int i = maxIndex; i < lines.size(); i++) {
+            if (maxCount < lines.get(i).points.size()){
+                maxCount = lines.get(i).points.size();
+                maxIndex = i;
+            }
+        }
+
+        System.out.println(lines.get(maxIndex).toString());
+        System.out.println(maxCount);
+
+
+
     }
 }

@@ -1,4 +1,8 @@
+import Chapter0.Chapter0;
 import Chapter1.Chapter1;
+import Chapter11.Chapter11;
+import Chapter11.RankTree;
+import Chapter14.CircularArray;
 import Chapter2.Chapter2;
 import Chapter2.Node;
 import Chapter3.QueueFromStack;
@@ -7,6 +11,10 @@ import Chapter4.Chapter4;
 import Chapter4.GraphNode;
 import Chapter4.Tree;
 import Chapter7.Chapter7;
+import Chapter9.Chapter9;
+import Chapter0.MaxHeap;
+import Chapter0.MinHeap;
+import com.sun.jdi.connect.spi.TransportService;
 import com.sun.org.apache.xml.internal.security.utils.CachedXPathFuncHereAPI;
 
 import javax.imageio.ImageIO;
@@ -14,6 +22,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by lazyCoder455 on 3/6/14.
@@ -78,9 +87,50 @@ public class Main {
         //System.out.println(Chapter7.multiply(5, 4));
         //System.out.println(Chapter7.subtract(4, -5));
         //System.out.println(Chapter7.divide(-20, -5));
-        int n = 5;
-        System.out.println(Chapter7.kthPrime(n));
-        System.out.println(Chapter7.kthPrimeEfficeint(n));
+//        int n = 5;
+//        System.out.println(Chapter7.kthPrime(n));
+//        System.out.println(Chapter7.kthPrimeEfficeint(n));
+
+//        Chapter9.addParentheses(0, 0, 3, new char[2 * 3], 0);
+//        int[][] image = new int[][] {{1, 1, 1}, {2, 2, 2}, {4, 4, 4}};
+//        Chapter9.changeColor(image, new boolean[3][3], 1, 1, 5);
+
+//        System.out.println(Chapter9.makeChange(5));
+//        int[] array = new int[] {108, 7, 78, 9};
+//        int[] array2 = new int[]{108, 7, 78, 9};
+        //Chapter11.mergeSort(array);
+
+        //Chapter11.quickSort(array, 0, array.length - 1);
+        //Chapter11.bubbleSort(array2);
+        //Chapter11.heapSort(array2);
+        //int[] b = new int[] {1, 2, 4, 6, 8, 10, 12, 14};
+        //int[] a = new int[] {0, 3, 5, 7, 9, 11, 13, 15, 0, 0, 0, 0, 0, 0, 0, 0};
+        //Chapter11.mergeTwo(a, b, 7);
+        //System.out.print(Chapter11.binarySearch(array2, 9));
+        //Chapter11.rotate(array, 1);
+//        String[] ab = new String[] {"a", "", "", "b", "", "", "c", "", "", "d"};
+//        System.out.println(Chapter11.search(ab, "d"));
+        //int[] a = new int[] {8, 6, 0, 2, 3};
+//        RankTree r = Chapter11.readInts(a);
+//        System.out.println(r.getRank(9));
+//        CircularArray<Integer> g = new CircularArray<Integer>();
+//        for(Object o : g){
+//            String result = o.toString();
+//            System.out.println(result);
+//        }
+//        ArrayList<String> h = Chapter0.getPerm("abc");
+//        for(String k : h){
+//            System.out.println(k);
+//        }
+//        MaxHeap j = new MaxHeap();
+//        j.insert(8);
+//        j.insert(10);
+//        j.insert(12);
+//        j.insert(6);
+//        j.delete(6);
+//        System.out.print(j.toString());
+
+
 
 
     }

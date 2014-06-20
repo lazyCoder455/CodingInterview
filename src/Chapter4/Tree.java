@@ -8,7 +8,7 @@ import Chapter2.Node;
 public class Tree {
     public Tree right;
     public Tree left;
-    private int data;
+    public int data;
 
     public Tree(int a) {
         this.data = a;
