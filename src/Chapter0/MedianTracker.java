@@ -38,10 +38,54 @@ public class MedianTracker {
 
     public void insert(int element){
         data[insertionIndex++] = element;
-        if(min.size() < max.size()){
-            min.insert(element);
-        } else {
-            max.insert(element);
+        //size req
+        if(max.size() == min.size()){
+            //go to value req
+            if(max.size() == 0) {
+                max.insert(element);
+                return;
+            }
+            if(element > max.getRoot()){
+                min.insert(element);
+                return;
+            } else {
+                max.insert(element);
+                return;
+            }
         }
+        if(max.size() - min.size() == 1){
+            //we cannot add into max yet
+            if(element > max.getRoot()){
+                min.insert(element);
+                return; //we done
+                // we didnt have to add to max
+            } else {
+                min.insert(max.getRoot());
+                max.delete(max.getRoot());
+                max.insert(element);
+                return;
+            }
+        }
+        if(min.size() - max.size() == 1){
+            //we cannot add to min yet
+            if(element < max.getRoot()){
+                max.insert(element);
+                return; //we done
+            } else {
+                max.insert(min.getRoot());
+                min.delete(min.getRoot());
+                min.insert(element);
+                return;
+            }
+        }
+
+    }
+
+    public String toString() {
+        String str = "";
+        for(int i = 0; i < insertionIndex; i++){
+            str += data[i] + " ";
+        }
+        return str;
     }
 }

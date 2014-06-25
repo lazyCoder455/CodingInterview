@@ -14,6 +14,9 @@ import Chapter7.Chapter7;
 import Chapter9.Chapter9;
 import Chapter0.MaxHeap;
 import Chapter0.MinHeap;
+import Chapter0.MedianTracker;
+import Review.Review;
+import Review.Tower;
 import com.sun.jdi.connect.spi.TransportService;
 import com.sun.org.apache.xml.internal.security.utils.CachedXPathFuncHereAPI;
 
@@ -23,6 +26,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Stack;
 
 /**
  * Created by lazyCoder455 on 3/6/14.
@@ -129,9 +134,33 @@ public class Main {
 //        j.insert(6);
 //        j.delete(6);
 //        System.out.print(j.toString());
-
-
-
+//        MedianTracker mt = new MedianTracker(20);
+//        mt.insert(1);
+//        mt.insert(2);
+//        mt.insert(3);
+//        mt.insert(4);
+//        mt.insert(5);
+//        System.out.println(mt.getMedian());
+        //Node a = Node.createList(1, 1, 1);
+        //Node result = Review.addReverse(a, a, 0);
+        //Review.printKthFromEnd(2, a);
+        //System.out.print(Node.toString(result));
+//        Random r = new Random();
+//        Stack<Integer> j = new Stack<Integer>();
+//        for(int i = 0; i < 10; i++){
+//            j.push(r.nextInt(200));
+//        }
+//        Stack<Integer> result = Review.mergeSort(j);
+//        System.out.println(result.toString());
+//        Tower source = new Tower(0);
+//        Tower buffer = new Tower(1);
+//        Tower destination = new Tower(3);
+//        for(int i = 3; i > 0; i--){
+//           source.addDisks(i);
+//        }
+//        Tower.move(source.getSize(), source, buffer, destination);
+//        System.out.println(destination.toString());
+        System.out.println(Review.findMissing(new int[] {0, 1, 2, 3, 4, 5, 7}));
 
     }
 }

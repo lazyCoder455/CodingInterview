@@ -2,6 +2,8 @@ package Chapter4;
 
 import Chapter2.Node;
 
+import java.util.ArrayList;
+
 /**
  * Created by lazyCoder on 3/15/14.
  */
@@ -18,17 +20,17 @@ public class Tree {
 
     }
 
-    public static void addBST(Tree a, Tree add) {
+    public static Tree addBST(Tree a, Tree add) {
         if (a == null) {
-            a = add;
+            return add;
         }
         if (add.data > a.data) {
-            addBST(a.right, add);
+            a.right = addBST(a.right, add);
         }
         if (add.data < a.data) {
-            addBST(a.left, add);
+            a.left = addBST(a.left, add);
         }
-        if (a.data == add.data) return;
+       return a;
     }
 
     public static void addToBST(Tree a, int[] sorted) {
@@ -88,5 +90,32 @@ public class Tree {
         }
         addToLinkedList(root.right, lists, depth + 1);
         addToLinkedList(root.left, lists, depth + 1);
+    }
+
+    public static Tree BFS(Tree a, int find){
+        if(a == null) return null;
+        ArrayList<Tree> queue = new ArrayList<Tree>();
+        queue.add(a);
+        while (!queue.isEmpty()) {
+            Tree t = queue.get(0);
+            queue.remove(0);
+            if(t.data == find) return t;
+            Tree right = t.right;
+            Tree left = t.left;
+            if(right != null) queue.add(right);
+            if(left != null) queue.add(left);
+        }
+        return null;
+    }
+
+    public static Tree DFS(Tree a, int find){
+        if(a == null){
+            return null;
+        }
+        if(a.data == find) return a;
+        Tree right = DFS(a.right, find);
+        Tree left = DFS(a.left, find);
+        if(right != null) return right;
+        return left;
     }
 }
