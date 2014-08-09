@@ -126,7 +126,7 @@ public class Chapter2 {
         // different speeds
         while (distance2 != 0) {
             distance1--;
-            distance2--;
+            distance2 -= 1;
         }
         //distance1 is the node that cause the problem
         for (int i = 0; i < distance1; i++) {
@@ -163,12 +163,17 @@ public class Chapter2 {
         int carry = 0;
         while (heada.next != null && headb.next != null) {
             sum = (heada.data + headb.data) + carry;
-            carry = sum >= 10 ? 1 : 0;
-            sum %= 10;
+            if (sum >= 10) {
+                carry = 1;
+                sum %= 10;
+            } else {
+                carry = 0;
+            }
             iter.next = new Node(sum);
             iter = iter.next;
             heada = heada.next;
             headb = headb.next;
+
         }
 
 

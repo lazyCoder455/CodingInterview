@@ -66,7 +66,7 @@ public class Chapter1 {
             }
         }
 
-        int shift = numSpaces * 2; // the length of the replacement pattern - 1
+        int shift = numSpaces * 2; // the lenght of the replacement pattern - 1
         for(int i = length - 1; i > index - 1; i--) {
             if(pattern[i] == ' ') {
                 pattern[i + shift--] = '0';
@@ -174,49 +174,5 @@ public class Chapter1 {
 
         return image;
 
-    }
-
-    public static String compress(String sequence){
-        if(compressedLength(sequence) > sequence.length()) return sequence;
-        StringBuilder builder = new StringBuilder();
-        int count = 1;
-        char test;
-        char last = sequence.charAt(0);
-        builder.append(last);
-        for(int i = 1; i < sequence.length(); i++){
-            test = sequence.charAt(i);
-            if(test == last){
-                count++;
-            } else {
-                last = test;
-                builder.append(String.valueOf(count));
-                builder.append(last);
-                count = 1;
-            }
-        }
-
-        builder.append(String.valueOf(count));
-
-        String result = builder.toString();
-        return result;
-    }
-
-    private static int compressedLength(String sequence){
-        int size = 0;
-        int count = 1;
-        char last = sequence.charAt(0);
-        char test;
-        for(int i = 1; i < sequence.length(); i++){
-            test = sequence.charAt(i);
-            if(last == test){
-                count++;
-            } else {
-                last = test;
-                size += 1 + String.valueOf(count).length();
-                count = 1;
-            }
-        }
-        size += 1 + String.valueOf(count).length();
-        return size;
     }
 }
